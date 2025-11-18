@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Functions {
 
     public String reverse (String input, boolean caseSensitive) {
@@ -28,6 +30,25 @@ public class Functions {
             inputLength++;
         }
         return true;
+    }
+
+    public HashMap<String, Integer> ocurrences (String input, boolean caseSensitive) {
+        HashMap<String, Integer> ocurrences = new HashMap<>();
+        for(int i = 0; i < input.length(); i++) {
+            Character c = input.charAt(i);
+            if(!caseSensitive) {
+                c =  Character.toUpperCase(c);
+            }
+            if(c.toString().equals(" ")) {
+                continue;
+            }
+            if(!ocurrences.containsKey(c.toString())) {
+                ocurrences.put(c.toString(), 1);
+            } else {
+                ocurrences.put(c.toString(), ocurrences.get(c.toString()) + 1);
+            }
+        }
+        return ocurrences;
     }
 
 }
